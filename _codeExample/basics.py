@@ -9,7 +9,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 #from A.B import C : A폴더의 B파일의 C클래스, 변수를 불러옴
-
 from PyQt5 import uic
 
 CalUI = '../_uiFiles/calculator.ui'
