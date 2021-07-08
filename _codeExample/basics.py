@@ -14,7 +14,6 @@ from PyQt5 import uic
 
 CalUI = '../_uiFiles/calculator.ui'
 
-
 class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
     def __init__(self):
         QDialog.__init__(self, None)
