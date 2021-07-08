@@ -10,16 +10,15 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 #from A.B import C : A폴더의 B파일의 C클래스, 변수를 불러옴
 
+from PyQt5 import uic
+
+CalUI = '../_uiFiles/calculator.ui'
+
+
 class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
     def __init__(self):
         QDialog.__init__(self, None)
-
-        self.setFixedSize(300, 200)
-        #창크기 조절(가로px, 세로px), Fixed이므로 크기가 고정되어 조절 불가능
-        self.lineEdit = QLineEdit(self)
-        #QLineEdit = 사용자가 글을 쓸 수 있는 인풋위젯
-        self.pushButton = QPushButton(self)
-        #QPushButton = 유저가 누를 수 있는 버튼 위젯
+        uic.loadUi(CalUI, self)
 
 app = QApplication(sys.argv)
 #QApplication() : 기본적으로 프로그램을 실행시키는 역할
