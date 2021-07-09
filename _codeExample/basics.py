@@ -29,6 +29,14 @@ class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
         self.num_pushButton_7.clicked.connect(lambda state, button = self.num_pushButton_7 : self.NumClicked(state, button))
         self.num_pushButton_8.clicked.connect(lambda state, button = self.num_pushButton_8 : self.NumClicked(state, button))
         self.num_pushButton_9.clicked.connect(lambda state, button = self.num_pushButton_9 : self.NumClicked(state, button))
+        self.num_pushButton_0.clicked.connect(lambda state, button = self.num_pushButton_9 : self.NumClicked(state, button))
+
+        self.sing_pushButton_1.clicked.connect(lambda state, button = self.sing_pushButton_1 : self.NumClicked(state, button))
+        self.sing_pushButton_2.clicked.connect(lambda state, button = self.sing_pushButton_2 : self.NumClicked(state, button))
+        self.sing_pushButton_3.clicked.connect(lambda state, button = self.sing_pushButton_3 : self.NumClicked(state, button))
+        self.sing_pushButton_4.clicked.connect(lambda state, button = self.sing_pushButton_4 : self.NumClicked(state, button))
+
+        self.result_pushButton.clicked.connect(self.MakeResult)
 
     def NumClicked(self, state, button): #함수선언
         #button : 버튼에 적힌 글자
@@ -41,6 +49,13 @@ class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
 
         self.q_lineEdit.setText(exist_line_text + now_num_text)
         #qlineEdit.setText(문자열) : lineEdit에 해당 문자열'만' 적는 메서드
+
+    def MakeResult(self): #수식 계산하는 역할
+        result = eval(self.q_lineEdit.text())
+        # eval : 문자열의 수식을 계산, q_lineEdit에 있는 글자들을 계산]
+        self.a_lineEdit.setText(str(result))
+        # setText메서드 안에는 문자열형식만 들어갈 수 있음 -> str(변수) : 변수의 형식을 문자열로 반환
+        #print(type(result)) #타입확인
 
 app = QApplication(sys.argv)
 #QApplication() : 기본적으로 프로그램을 실행시키는 역할
