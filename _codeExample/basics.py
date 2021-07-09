@@ -36,7 +36,9 @@ class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
         self.sing_pushButton_3.clicked.connect(lambda state, button = self.sing_pushButton_3 : self.NumClicked(state, button))
         self.sing_pushButton_4.clicked.connect(lambda state, button = self.sing_pushButton_4 : self.NumClicked(state, button))
 
-        self.result_pushButton.clicked.connect(self.MakeResult)
+        self.result_pushButton.clicked.connect(self.MakeResult) #'='
+        self.reset_pushButton.clicked.connect(self.Reset) #'C'
+        self.del_pushButton.clicked.connect(self.Delete) #'del'
 
     def NumClicked(self, state, button): #함수선언
         #button : 버튼에 적힌 글자
@@ -51,11 +53,34 @@ class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
         #qlineEdit.setText(문자열) : lineEdit에 해당 문자열'만' 적는 메서드
 
     def MakeResult(self): #수식 계산하는 역할
-        result = eval(self.q_lineEdit.text())
-        # eval : 문자열의 수식을 계산, q_lineEdit에 있는 글자들을 계산]
-        self.a_lineEdit.setText(str(result))
-        # setText메서드 안에는 문자열형식만 들어갈 수 있음 -> str(변수) : 변수의 형식을 문자열로 반환
-        #print(type(result)) #타입확인
+        try:
+            result = eval(self.q_lineEdit.text())
+            # eval : 문자열의 수식을 계산, q_lineEdit에 있는 글자들을 계산]
+            self.a_lineEdit.setText(str(result))
+            # setText메서드 안에는 문자열형식만 들어갈 수 있음 -> str(변수) : 변수의 형식을 문자열로 반환
+            #print(type(result)) #타입확인
+        
+        #except:
+            #pass
+            #pass : 함수가 실행돼도 동작하지 않음 -> 에러 안 난척,,ㅎ
+            #계산기의 버튼을 말도 안되게 누르면 원랜 실행창 중지됨
+        
+        except Exception as e: #어떤 에러가 뜨는지 확인 가능
+            print(e)
+
+    def Reset(self):
+        self.q_lineEdit.clear()
+        #.clear() : lineEdit을 초기화
+        self.a_lineEdit.setText(str('0'))
+        #리셋버튼 누르면 결과창은 0으로 변함
+
+    def Delete(self):
+        #원래 있던 거 보전하면서 뒤에 있는 문자만 하나씩 지우기
+        exist_line_text = self.q_lineEdit.text()
+
+        #문자슬라이싱 = 문자열을 인덱싱을 이용해 잘라주는 기능
+        exist_line_text = exist_line_text[:-1]  # = exist_line_text에 인덱스 -1인 가장 마지막에 전힌 문자만 뺸 문자열
+        self.q_lineEdit.setText(exist_line_text)
 
 app = QApplication(sys.argv)
 #QApplication() : 기본적으로 프로그램을 실행시키는 역할
