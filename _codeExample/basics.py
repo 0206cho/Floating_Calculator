@@ -36,16 +36,27 @@ class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
         self.sing_pushButton_3.clicked.connect(lambda state, button = self.sing_pushButton_3 : self.NumClicked(state, button))
         self.sing_pushButton_4.clicked.connect(lambda state, button = self.sing_pushButton_4 : self.NumClicked(state, button))
 
+        self.p_open_pushButton.clicked.connect(lambda state, button = self.p_open_pushButton : self.NumClicked(state, button))
+        self.p_close_pushButton.clicked.connect(lambda state, button = self.p_close_pushButton : self.NumClicked(state, button))
+        self.dot_pushButton.clicked.connect(lambda state, button = self.dot_pushButton : self.NumClicked(state, button))
+        self.per_pushButton.clicked.connect(lambda state, button = self.per_pushButton : self.NumClicked(state, button)) # % = *0.01
+
         self.result_pushButton.clicked.connect(self.MakeResult) #'='
         self.reset_pushButton.clicked.connect(self.Reset) #'C'
         self.del_pushButton.clicked.connect(self.Delete) #'del'
 
     def NumClicked(self, state, button): #함수선언
+        if button == self.per_pushButton:
+            now_num_text = '*0.01'
+            # 변수 now_num_text - per_버튼일 경우 변수값이 *0.01이 되어야 함
+        else:
+            now_num_text = button.text()
+
         #button : 버튼에 적힌 글자
         exist_line_text = self.q_lineEdit.text()
         #lineEdit에 적힌 문자가 누적되어야하므로 변수에 저장
 
-        now_num_text = button.text()
+        #now_num_text = button.text() -> 위 if문이 들어가면서 이 코드는 삭제
         #버튼에 적혀있는 글자 가져오기 : .text()
         # #버튼의 숫자 변수에 저장
 
