@@ -11,12 +11,15 @@ from PyQt5.QtWidgets import *
 #from A.B import C : A폴더의 B파일의 C클래스, 변수를 불러옴
 from PyQt5 import uic
 
-CalUI = '../_uiFiles/calculator.ui'
+CalUI = '../_uiFiles/calculator2.ui'
+#calculator.ui = 기본 기능, 2.ui = 부등호 추가
 
 class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
     def __init__(self):
-        QDialog.__init__(self, None)
+        QDialog.__init__(self, None, Qt.WindowStaysOnTopHint)
         uic.loadUi(CalUI, self)
+
+        self.setWindowTitle('계산기')
 
         self.num_pushButton_1.clicked.connect(lambda state, button = self.num_pushButton_1 : self.NumClicked(state, button))
         #lambda함수 : 코드 한 줄로 함수를 만드는 애
@@ -29,17 +32,22 @@ class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
         self.num_pushButton_7.clicked.connect(lambda state, button = self.num_pushButton_7 : self.NumClicked(state, button))
         self.num_pushButton_8.clicked.connect(lambda state, button = self.num_pushButton_8 : self.NumClicked(state, button))
         self.num_pushButton_9.clicked.connect(lambda state, button = self.num_pushButton_9 : self.NumClicked(state, button))
-        self.num_pushButton_0.clicked.connect(lambda state, button = self.num_pushButton_9 : self.NumClicked(state, button))
+        self.num_pushButton_0.clicked.connect(lambda state, button = self.num_pushButton_0 : self.NumClicked(state, button))
 
-        self.sing_pushButton_1.clicked.connect(lambda state, button = self.sing_pushButton_1 : self.NumClicked(state, button))
-        self.sing_pushButton_2.clicked.connect(lambda state, button = self.sing_pushButton_2 : self.NumClicked(state, button))
-        self.sing_pushButton_3.clicked.connect(lambda state, button = self.sing_pushButton_3 : self.NumClicked(state, button))
-        self.sing_pushButton_4.clicked.connect(lambda state, button = self.sing_pushButton_4 : self.NumClicked(state, button))
+        self.sing_pushButton_1.clicked.connect(lambda state, button = self.sing_pushButton_1 : self.NumClicked(state, button)) #'/'
+        self.sing_pushButton_2.clicked.connect(lambda state, button = self.sing_pushButton_2 : self.NumClicked(state, button)) #'*'
+        self.sing_pushButton_3.clicked.connect(lambda state, button = self.sing_pushButton_3 : self.NumClicked(state, button)) #'-'
+        self.sing_pushButton_4.clicked.connect(lambda state, button = self.sing_pushButton_4 : self.NumClicked(state, button)) #'+'
 
-        self.p_open_pushButton.clicked.connect(lambda state, button = self.p_open_pushButton : self.NumClicked(state, button))
-        self.p_close_pushButton.clicked.connect(lambda state, button = self.p_close_pushButton : self.NumClicked(state, button))
+        self.p_open_pushButton.clicked.connect(lambda state, button = self.p_open_pushButton : self.NumClicked(state, button)) #'('
+        self.p_close_pushButton.clicked.connect(lambda state, button=self.p_close_pushButton: self.NumClicked(state, button))  # ')'
         self.dot_pushButton.clicked.connect(lambda state, button = self.dot_pushButton : self.NumClicked(state, button))
         self.per_pushButton.clicked.connect(lambda state, button = self.per_pushButton : self.NumClicked(state, button)) # % = *0.01
+
+        self.p_open_pushButton_2.clicked.connect(lambda state, button = self.p_open_pushButton_2 : self.NumClicked(state, button)) #'<'
+        self.p_close_pushButton_2.clicked.connect(lambda state, button=self.p_close_pushButton_2: self.NumClicked(state, button))  # '>'
+        self.and_pushButton.clicked.connect(lambda state, button=self.and_pushButton: self.NumClicked(state, button))  # '&'
+        self.or_pushButton.clicked.connect(lambda state, button=self.or_pushButton: self.NumClicked(state, button))  # '|'
 
         self.result_pushButton.clicked.connect(self.MakeResult) #'='
         self.reset_pushButton.clicked.connect(self.Reset) #'C'
@@ -101,6 +109,8 @@ class MainDialog(QDialog): #QDialog를 상속받는 MainDialog를 선언
         #문자슬라이싱 = 문자열을 인덱싱을 이용해 잘라주는 기능
         exist_line_text = exist_line_text[:-1]  # = exist_line_text에 인덱스 -1인 가장 마지막에 전힌 문자만 뺸 문자열
         self.q_lineEdit.setText(exist_line_text)
+
+
 
 app = QApplication(sys.argv)
 #QApplication() : 기본적으로 프로그램을 실행시키는 역할
