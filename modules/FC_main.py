@@ -78,6 +78,11 @@ class MainDialog(QDialog, UI.Ui_Dialog):  # QDialog를 상속받는 MainDialog�
         # 1: del버튼의 이미지와 경계선 없앰 2: 마우스 올릴 때의 이미지
         # python에서 따옴표 3개문자열 = 이스케이프 문자없이 줄바꿈가능, 보기 편함
 
+        self.and_pushButton.setStyleSheet(
+            '''
+              QPushButton{image:url(../image/andButton.png);}
+             ''')
+
     def NumClicked(self, state, button):  # 함수선언
         if button == self.per_pushButton:
             now_num_text = '*0.01'
