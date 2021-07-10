@@ -5,6 +5,7 @@ import sys, UI
 # sys모듈(파일)을 불러옴
 
 import PyQt5
+import math
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
@@ -86,7 +87,13 @@ class MainDialog(QDialog, UI.Ui_Dialog):  # QDialog를 상속받는 MainDialog�
     def NumClicked(self, state, button):  # 함수선언
         if button == self.per_pushButton:
             now_num_text = '*0.01'
+            print(math.sqrt(now_num_text))
             # 변수 now_num_text - per_버튼일 경우 변수값이 *0.01이 되어야 함
+        # elif button == self.root_pushButton:
+        #     root = pow(float
+        #     now_num_text = pow(float(now_num_text)
+        #     print(now_num_text)
+
         else:
             now_num_text = button.text()
 

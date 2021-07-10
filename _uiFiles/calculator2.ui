@@ -492,10 +492,6 @@ background-color: rgb(224, 253, 255);</string>
       <property name="text">
        <string>&amp;</string>
       </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../image/and_button.png</normaloff>../image/and_button.png</iconset>
-      </property>
      </widget>
     </item>
     <item row="0" column="1">
