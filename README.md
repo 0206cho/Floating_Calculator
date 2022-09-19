@@ -24,5 +24,5 @@ PyQt5 - 화면 고정 계산기
 ## 💻 프로젝트 구현
 
 ### [ 구현 영상 ]
-src="https://github.com/0206cho/Floating_Calculator/blob/master/libs/%EA%B5%AC%ED%98%84%EC%98%81%EC%83%81.gif"/>
+<img src="https://github.com/0206cho/Floating_Calculator/blob/master/libs/%EA%B5%AC%ED%98%84%EC%98%81%EC%83%81.gif"/>
 
